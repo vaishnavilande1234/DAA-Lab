@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+
+int countZeros(int arr[], int n) {
+    int low = 0, high = n - 1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2; 
+        if (arr[mid] == 1) {
+            
+            low = mid + 1;
+        } else {
+            // If mid element is 0, there might be more zeros to the left
+            high = mid - 1;
+        }
+    }
+    
+    return n - low;
+}
+
+int main() {
+    int n;
+    cout << "Enter the size of the array: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter the elements of the array (1s followed by 0s): ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    // Call the function and print the result
+    int zeros = countZeros(arr, n);
+    cout << "Number of zeros in the array: " << zeros << endl;
+
+    return 0;
+}
