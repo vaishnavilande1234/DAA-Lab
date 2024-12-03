@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+// Function to find the maximum profit using a greedy approach
+int mProfit(int* prices, int n) {
+    int profit = 0;
+
+    // Traverse the array to capture all positive differences
+    for (int i = 1; i < n; i++) {
+        if (prices[i] > prices[i - 1]) {
+            profit += (prices[i] - prices[i - 1]);
+        }
+    }
+
+    return profit;
+}
+
+int main() {
+    int N;
+
+    // Taking the number of days as input
+    cout << "Enter the number of days: ";
+    cin >> N;
+
+    // Dynamically allocating memory for the prices array
+    int* prices = new int[N];
+
+    // Taking the prices as input
+    cout << "Enter the prices: ";
+    for (int i = 0; i < N; i++) {
+        cin >> prices[i];
+    }
+
+    // Function Call
+    cout << "Maximum Profit: " << mProfit(prices, N) << endl;
+
+    // Free dynamically allocated memory
+    delete[] prices;
+
+    return 0;
+}
